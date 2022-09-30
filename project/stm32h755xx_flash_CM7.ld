@@ -191,7 +191,6 @@ SECTIONS
     *(.data*)          /* .data* sections */
     . = ALIGN(4);
   } >RAM_D2 AT> FLASH
-
     .ramd3 :
   {
     . = ALIGN(4);
