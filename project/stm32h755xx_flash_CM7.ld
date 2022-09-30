@@ -179,23 +179,20 @@ SECTIONS
   .dtcmram :
   {
     . = ALIGN(4);
-    *(.data)           /* .data sections */
-    *(.data*)          /* .data* sections */
+    KEEP(*(.dtcmram))
     . = ALIGN(4);
   } >DTCMRAM AT> FLASH
 
   .ramd2 :
   {
     . = ALIGN(4);
-    *(.data)           /* .data sections */
-    *(.data*)          /* .data* sections */
+    KEEP(*(.ramd2))
     . = ALIGN(4);
   } >RAM_D2 AT> FLASH
     .ramd3 :
   {
     . = ALIGN(4);
-    *(.data)           /* .data sections */
-    *(.data*)          /* .data* sections */
+    KEEP(*(.ramd3))
     . = ALIGN(4);
   } >RAM_D3 AT> FLASH
 
