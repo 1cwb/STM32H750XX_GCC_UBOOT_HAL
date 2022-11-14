@@ -70,10 +70,9 @@ void HardFault_Handler(void)
 void MemManage_Handler(void)
 {
   /* Go to infinite loop when Memory Manage exception occurs */
-  printf("Error! using read only mem\n");
   while (1)
   {
-HAL_Delay(1000);printf("Error! using read only mem\n");
+    
   }
 }
 

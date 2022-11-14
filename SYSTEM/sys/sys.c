@@ -39,6 +39,8 @@ HAL_StatusTypeDef Stm32_Clock_Init(uint32_t pllm, uint32_t plln, uint32_t pllp, 
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
+  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+
   /** Supply configuration update enable
   */
   HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
@@ -94,5 +96,13 @@ HAL_StatusTypeDef Stm32_Clock_Init(uint32_t pllm, uint32_t plln, uint32_t pllp, 
 
 	HAL_SYSTICK_Config(HAL_RCC_GetSysClockFreq()/1000);//systick时钟默认使用HCLK，可以手动设置为AHB/8，1ms 进一次中断
 	HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_QSPI;	   	// 设置QSPI时钟
+  
+	PeriphClkInitStruct.QspiClockSelection = RCC_QSPICLKSOURCE_D1HCLK;	// 选择HCLK(240MHz)作为QSPI内核时钟
+
+	if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+	{
+      return HAL_ERROR;
+	} 
     return HAL_OK;
 }

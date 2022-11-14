@@ -14,7 +14,7 @@ SUBMK += $(foreach dir, $(SUBDIRS), $(wildcard $(dir)/*.mk))
 include $(SUBMK)
 
 ################################################################################################
-TARGET           	?= STM32H7
+TARGET           	?= STM32H7_uboot
 OUTPUTDIR := $(CURDIR)/output
 ###################################################COMPILE######################################
 CROSS_COMPILE    	?= arm-none-eabi-
