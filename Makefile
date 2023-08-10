@@ -90,7 +90,7 @@ $(OUTPUTDIR)/$(TARGET).elf:$(OBJS)
 	$(OBJCOPY) -O binary -S $(OUTPUTDIR)/$(TARGET).elf $(OUTPUTDIR)/$(TARGET).bin
 	$(OBJDUMP) -D -m arm $(OUTPUTDIR)/$(TARGET).elf > $(OUTPUTDIR)/$(TARGET).dis
 	$(SIZEINFO) $@
-	cp output/$(TARGET).bin /mnt/d/STM32/
+	cp output/$(TARGET).bin /mnt/e/STM32/
 	sync
 
 $(SOBJS) : $(OUTPUTDIR)/%.o : %.s
