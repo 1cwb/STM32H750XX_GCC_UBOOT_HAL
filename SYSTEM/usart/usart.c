@@ -31,7 +31,7 @@ void uart_init(uint32_t bound)
 	PeriphClkInitStruct.Usart16ClockSelection = RCC_PERIPHCLK_USART16;
 	if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
 	{
-      return HAL_ERROR;
+      return;
 	} 
 	UART1_Handler.Instance=USART1;					  
 	UART1_Handler.Init.BaudRate=bound;				  
