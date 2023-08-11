@@ -26,13 +26,7 @@ uint8_t aRxBuffer[RXBUFFERSIZE];
 UART_HandleTypeDef UART1_Handler;
 
 void uart_init(uint32_t bound)
-{	
-	RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
-	PeriphClkInitStruct.Usart16ClockSelection = RCC_PERIPHCLK_USART16;
-	if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
-	{
-      return;
-	} 
+{
 	UART1_Handler.Instance=USART1;					  
 	UART1_Handler.Init.BaudRate=bound;				  
 	UART1_Handler.Init.WordLength=UART_WORDLENGTH_8B; 

@@ -39,10 +39,10 @@ ARM_INSTRUCTION 	:= -mthumb
 MCU_FLAGS       	:= $(CPU) $(ARM_INSTRUCTION) $(FPU) $(FLOAT_ABT)
 
 ##################################################COMPILE_FLAGS#################################
-C_COMPILE_FLAGS 	:= -lc -lm -lnosys -std=c11 -Wall -fdata-sections -ffunction-sections -g0 -gdwarf-2 -O1
+C_COMPILE_FLAGS 	:= -lc -lm -lnosys -std=c11 -Wall -fdata-sections -ffunction-sections -g0 -gdwarf-2 -Os
 
 CXX_COMPILE_FLAGS 	:= -lc -lm -lnosys -fno-rtti -std=c++11 -fno-exceptions -fno-builtin -Wall \
-						-fdata-sections -ffunction-sections -g0 -gdwarf-2 -O1 -Wl,-gc-section
+						-fdata-sections -ffunction-sections -g0 -gdwarf-2 -Os -Wl,-gc-section
 
 ASM_COMPILE_FLAGS 	:= -x assembler-with-cpp -Wa,-mimplicit-it=thumb
 #################################################################################################
