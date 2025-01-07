@@ -18,7 +18,7 @@ int main(void)
     SCB_EnableICache();		// 使能ICache
 	SCB_EnableDCache();		// 使能DCache
     HAL_Init(); //初始化 HAL 库
-    Stm32_Clock_Init(5,192,2,2); //设置时钟,480Mhz
+    Stm32_Clock_Init(PLLM_VALUE,PLLN_VALUE,PLLP_VALUE,PLLQ_VALUE,PLLR_VALUE); //设置时钟,480Mhz
     /* System Clock Update */
     SystemCoreClockUpdate();
     delay_init(HAL_RCC_GetSysClockFreq()/1000000);//1US跑的tick数

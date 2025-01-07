@@ -51,10 +51,38 @@ EXTRA_LINK_FLAGS	:= -g -gdwarf-2 -lc -lm -lnosys -T$(LINK_FILES) \
 						-specs=nano.specs -specs=nosys.specs
 
 #################################################################################################
+#ifdef HSE8M
+#DEFINE    :=-DSTM32H750xx \
+#			-DHSE_VALUE=8000000 \
+#			-DCSI_VALUE=4000000 \
+#			-DHSI_VALUE=64000000 \
+#			-DPLLM_VALUE=2 \
+#			-DPLLN_VALUE=240 \
+#			-DPLLP_VALUE=2 \
+#			-DPLLQ_VALUE=4 \
+#			-DPLLR_VALUE=2
+#else ifdef HSE25M
 DEFINE    :=-DSTM32H750xx \
-			-DUSE_HAL_DRIVER \
-			-DUSE_FULL_LL_DRIVER \
-			-DHSE_VALUE=25000000
+			-DHSE_VALUE=25000000 \
+			-DCSI_VALUE=4000000 \
+			-DHSI_VALUE=64000000 \
+			-DPLLM_VALUE=5 \
+			-DPLLN_VALUE=192 \
+			-DPLLP_VALUE=2 \
+			-DPLLQ_VALUE=4 \
+			-DPLLR_VALUE=2
+#else
+#DEFINE    :=-DSTM32H750xx \
+#			-DHSE_VALUE=16000000 \
+#			-DCSI_VALUE=4000000 \
+#			-DHSI_VALUE=64000000 \
+#			-DPLLM_VALUE=4 \
+#			-DPLLN_VALUE=240 \
+#			-DPLLP_VALUE=2 \
+#			-DPLLQ_VALUE=4 \
+#			-DPLLR_VALUE=2
+#endif
+DEFINE    +=-DTHREAD_TICK_PER_SECOND=1000
 ###############################################################
 CFLAGS 				+= $(MCU_FLAGS) $(C_COMPILE_FLAGS) $(DEFINE)
 CXXFLAGS 			+= $(MCU_FLAGS) $(CXX_COMPILE_FLAGS) $(DEFINE)
