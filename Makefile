@@ -107,6 +107,15 @@ OBJS			 := $(SOBJS) $(COBJS) $(CXXOBJS)
 SRCDIRS          := $(dir $(SFILES)) $(dir $(CFILES)) $(dir $(CXXFILES))
 VPATH			 := $(SRCDIRS)
 
+define ensure_dir
+    @if [ ! -d "$(1)" ]; then \
+        echo "创建目录: $(1)"; \
+        mkdir -p $(1); \
+    else \
+        echo "目录已存在: $(1)"; \
+    fi
+endef
+
 .PHONY: clean
 
 
@@ -122,6 +131,7 @@ $(OUTPUTDIR)/$(TARGET).elf:$(OBJS)
 	sync
 
 $(SOBJS) : $(OUTPUTDIR)/%.o : %.s
+	$(call ensure_dir,$(OUTPUTDIR))
 	$(CC) -c $(ASMFLAGS) -o $@ $<
 
 $(COBJS) : $(OUTPUTDIR)/%.o : %.c
@@ -131,4 +141,4 @@ $(CXXOBJS) : $(OUTPUTDIR)/%.o : %.cpp
 	$(CXX) -c $(CXXFLAGS) $(INCLUDE) -o $@ $<
 
 clean:
-	rm -rf $(OUTPUTDIR)/*
+	rm -rf $(OUTPUTDIR)
